@@ -1,0 +1,21 @@
+version: "3.4"
+
+services:
+  jerseyctf:
+    build:
+      dockerfile: py.Dockerfile
+      context: .
+    entrypoint: python3
+    command: /var/cryptothing.py
+    volumes:
+      - ./cryptothing.py:/var/cryptothing.py
+
+  kali:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    entrypoint: /bin/bash
+    working_dir: /var
+    volumes:
+      - ./context-clues:/var/context-clues
+      - ./misdirection:/var/misdirection
